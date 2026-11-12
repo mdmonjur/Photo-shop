@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#102a56">
+<title>MR MONJUR Document Service</title>
+<style>
+:root{--navy:#102a56;--blue:#2563eb;--bg:#f3f6fc;--ink:#17233b;--muted:#667085;--line:#e4eaf4}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,"Noto Sans Bengali",sans-serif}
+header{background:linear-gradient(135deg,#102a56,#1e4c91);color:white;padding:25px 20px 28px}
+.wrap{max-width:1000px;margin:auto}
+.brand{font-size:12px;letter-spacing:2px;font-weight:700;color:#cfe0ff}
+h1{font-size:25px;margin:8px 0 5px}
+header p{margin:0;color:#dce8ff;font-size:14px}
+main{max-width:1000px;margin:20px auto;padding:0 16px 36px}
+.welcome,.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 5px 18px #102a560b}
+.welcome h2{margin:0 0 6px;font-size:20px;color:var(--navy)}
+.welcome p{margin:0;color:var(--muted);font-size:14px}
+.section-title{font-size:18px;color:var(--navy);margin:24px 0 12px}
+.grid{display:grid;grid-template-columns:repeat( auto-fit,minmax(145px,1fr));gap:12px}
+.service{border:1px solid var(--line);border-radius:16px;background:#fff;padding:16px;text-align:left;cursor:pointer;min-height:145px;transition:.18s}
+.service:hover,.service:focus{border-color:var(--blue);box-shadow:0 6px 20px #2563eb18;transform:translateY(-2px);outline:none}
+.ico{height:42px;width:42px;border-radius:12px;background:#eaf0ff;color:var(--blue);display:grid;place-items:center;font-size:22px;margin-bottom:13px}
+.service strong{display:block;color:var(--navy);font-size:15px;margin-bottom:5px}
+.service span{font-size:12px;color:var(--muted);line-height:1.45}
+.panel{margin-top:18px;display:none}
+.panel.active{display:block}
+.panel h2{margin:0 0 8px;color:var(--navy);font-size:20px}
+.panel p{color:var(--muted);font-size:14px;line-height:1.6}
+button,.btn{border:0;border-radius:10px;padding:11px 15px;background:var(--blue);color:#fff;font-weight:700;cursor:pointer;font-size:14px}
+button.secondary{background:#edf2ff;color:var(--navy)}
+.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}
+input[type=file]{display:block;width:100%;padding:14px;border:1px dashed #9db4df;border-radius:12px;background:#f8faff;margin:12px 0}
+.preview{max-width:100%;max-height:280px;display:block;margin:12px auto;border-radius:10px}
+.controls{display:flex;flex-wrap:wrap;gap:12px;align-items:end;margin:14px 0}
+.control{display:flex;flex-direction:column;gap:6px;min-width:145px;color:var(--navy);font-size:13px;font-weight:700}
+select{padding:10px;border:1px solid #cbd6e8;border-radius:10px;background:#fff;color:var(--ink);font-size:14px}
+#resultCanvas{display:block;max-width:100%;max-height:420px;margin:14px auto;border:1px solid var(--line);border-radius:10px;background:#f8faff}
+.status{font-size:13px;color:#315b9b;margin-top:8px}
+footer{text-align:center;color:#8993a5;font-size:12px;padding:18px}
+.note{background:#fff8e6;border:1px solid #f5dfa4;padding:12px;border-radius:12px;color:#73591b;font-size:12px;margin-top:15px;line-height:1.55}
+.hidden{display:none}
+@media(min-width:700px){header{padding:32px 28px}h1{font-size:30px}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <div class="brand">MR MONJUR</div>
+  <h1>Document Service</h1>
+  <p>আপনার প্রয়োজনীয় ডকুমেন্ট সার্ভিস, এখন এক জায়গায়</p>
+</div></header>
+<main>
+  <section class="welcome">
+    <h2>স্বাগতম!</h2>
+    <p>আপনার প্রয়োজনীয় সার্ভিসটি বেছে নিন। ফাইল নির্বাচন করে প্রিভিউ দেখতে পারবেন।</p>
+  </section>
+  <h2 class="section-title">সার্ভিসসমূহ</h2>
+  <section class="grid" aria-label="সার্ভিসসমূহ">
+    <button class="service" data-service="doc"><div class="ico">📄</div><strong>Document A4</strong><span>ছবি বা ডকুমেন্ট A4 পেজে সাজান</span></button>
+    <button class="service" data-service="id"><div class="ico">🪪</div><strong>আইডি কার্ড A4</strong><span>ID / NID ছবি নির্বাচন ও প্রিভিউ</span></button>
+    <button class="service" data-service="passport"><div class="ico">🖼️</div><strong>পাসপোর্ট ছবি</strong><span>পাসপোর্ট ছবির জন্য ছবি নির্বাচন</span></button>
+    <button class="service" data-service="cv"><div class="ico">🧾</div><strong>CV তৈরি</strong><span>CV তৈরির তথ্যের খসড়া</span></button>
+    <button class="service" data-service="pdf"><div class="ico">📕</div><strong>PDF Tools</strong><span>ছবি থেকে PDF প্রিভিউ</span></button>
+    <button class="service" data-service="other"><div class="ico">▦</div><strong>অন্যান্য সার্ভিস</strong><span>অন্যান্য ডকুমেন্ট সহায়তা</span></button>
+  </section>
+
+  <section class="panel" id="workspace">
+    <div class="actions"><button class="secondary" id="back">← ফিরে যান</button></div>
+    <h2 id="panelTitle">সার্ভিস</h2>
+    <p id="panelDesc">ফাইল নির্বাচন করুন।</p>
+    <label for="fileInput"><strong>ছবি বা ফাইল নির্বাচন করুন</strong></label>
+    <input id="fileInput" type="file" accept="image/*,.pdf">
+    <img id="preview" class="preview hidden" alt="নির্বাচিত ছবির প্রিভিউ">
+    <div id="fileInfo" aria-live="polite"></div>
+    <div id="passportControls" class="controls hidden">
+      <label class="control">পাসপোর্ট ছবির ব্যাকগ্রাউন্ড
+        <select id="bgColor">
+          <option value="#ffffff">সাদা</option>
+          <option value="#dceeff">হালকা নীল</option>
+          <option value="#e53935">লাল</option>
+          <option value="#d9f2df">হালকা সবুজ</option>
+        </select>
+      </label>
+      <button id="removeBgBtn" type="button">ব্যাকগ্রাউন্ড কাটুন ও রং দিন</button>
+    </div>
+    <div id="cropControls" class="controls hidden">
+      <label class="control">কাটিং / ছবির অনুপাত
+        <select id="cropRatio">
+          <option value="1.414">A4 অনুপাত</option>
+          <option value="1.586">ID কার্ড অনুপাত</option>
+          <option value="0.778">পাসপোর্ট ৩৫×৪৫</option>
+          <option value="1">স্কয়ার</option>
+          <option value="free">মূল অনুপাত</option>
+        </select>
+      </label>
+      <button id="makeCropBtn" type="button">নির্দিষ্ট মাপে কাটিং করুন</button>
+    </div>
+    <canvas id="resultCanvas" class="hidden"></canvas>
+    <div id="status" class="status" aria-live="polite"></div>
+    <div class="actions">
+      <button id="downloadBtn" class="hidden">কাটা ছবি ডাউনলোড</button>
+      <button id="printBtn" class="hidden">প্রিন্ট / Save as PDF</button>
+      <button id="clearBtn" class="secondary">ফাইল মুছুন</button>
+    </div>
+    <div class="note">পাসপোর্ট সার্ভিসে শুধু ব্যাকগ্রাউন্ড কাটার ও নতুন রং দেওয়ার অপশন আছে; এর জন্য ইন্টারনেট প্রয়োজন হতে পারে এবং প্রথমবার AI মডেল ডাউনলোড হবে। অন্য সার্ভিসে শুধু নির্দিষ্ট অনুপাতে ছবি কাটিং হবে—ব্যাকগ্রাউন্ডের রং পরিবর্তন হবে না। কাটিংটি ছবির মাঝখান ধরে স্বয়ংক্রিয়ভাবে হবে।</div>
+  </section>
+</main>
+<footer>© <span id="year"></span> MR MONJUR Document Service</footer>
+<script>
+const labels={
+ doc:["Document A4","A4 ডকুমেন্টের জন্য ছবি বা PDF নির্বাচন করুন।"],
+ id:["আইডি কার্ড A4","আইডি কার্ডের ছবি নির্বাচন করুন; নির্দিষ্ট অনুপাতে কাটিং করতে পারবেন।"],
+ passport:["পাসপোর্ট ছবি","ছবি আপলোড করুন। শুধু এই সার্ভিসে ব্যাকগ্রাউন্ড কেটে নতুন রং দিতে পারবেন।"],
+ cv:["CV তৈরি","এই ডেমোতে CV ফিচারটি পরবর্তী ধাপে তৈরি করা হবে।"],
+ pdf:["PDF Tools","একটি ছবি নির্বাচন করে PDF হিসেবে প্রিন্ট বা সেভ করতে পারবেন।"],
+ other:["অন্যান্য সার্ভিস","আপনার প্রয়োজনীয় ফাইল নির্বাচন করুন।"]
+};
+const workspace=document.getElementById("workspace"), fileInput=document.getElementById("fileInput");
+const preview=document.getElementById("preview"), fileInfo=document.getElementById("fileInfo");
+const printBtn=document.getElementById("printBtn"), canvas=document.getElementById("resultCanvas");
+const ctx=canvas.getContext("2d");
+let currentUrl=null, currentKey="doc", sourceImage=null, outputBlob=null;
+const passportControls=document.getElementById("passportControls");
+const cropControls=document.getElementById("cropControls");
+const statusEl=document.getElementById("status");
+document.getElementById("year").textContent=new Date().getFullYear();
+
+document.querySelectorAll(".service").forEach(btn=>btn.addEventListener("click",()=>{
+ currentKey=btn.dataset.service;
+ document.getElementById("panelTitle").textContent=labels[currentKey][0];
+ document.getElementById("panelDesc").textContent=labels[currentKey][1];
+ passportControls.classList.toggle("hidden",currentKey!=="passport");
+ cropControls.classList.toggle("hidden",currentKey==="passport"||currentKey==="cv");
+ workspace.classList.add("active");
+ workspace.scrollIntoView({behavior:"smooth",block:"start"});
+}));
+document.getElementById("back").addEventListener("click",()=>workspace.classList.remove("active"));
+
+fileInput.addEventListener("change",()=>{
+ const file=fileInput.files[0];
+ resetOutput();
+ if(!file)return;
+ fileInfo.textContent=`নির্বাচিত ফাইল: ${file.name} (${(file.size/1024).toFixed(1)} KB)`;
+ if(file.type.startsWith("image/")){
+   if(currentUrl)URL.revokeObjectURL(currentUrl);
+   currentUrl=URL.createObjectURL(file);
+   const img=new Image();
+   img.onload=()=>{sourceImage=img;preview.src=currentUrl;preview.classList.remove("hidden");};
+   img.onerror=()=>statusEl.textContent="ছবিটি খোলা যাচ্ছে না। অন্য ছবি নির্বাচন করুন।";
+   img.src=currentUrl;
+ } else if(file.type==="application/pdf"){
+   fileInfo.textContent+=" — PDF ফাইল নির্বাচন করা হয়েছে।";
+ } else {
+   statusEl.textContent="অনুগ্রহ করে JPG, PNG বা WebP ছবি নির্বাচন করুন।";
+ }
+});
+function resetOutput(){
+ sourceImage=null;outputBlob=null;canvas.classList.add("hidden");
+ document.getElementById("downloadBtn").classList.add("hidden");
+ printBtn.classList.add("hidden");statusEl.textContent="";
+ preview.classList.add("hidden");
+}
+function cropToRatio(img, ratio){
+ const sw=img.naturalWidth, sh=img.naturalHeight;
+ if(ratio==="free") return {sx:0,sy:0,sw,sh};
+ const r=Number(ratio), sourceR=sw/sh;
+ if(sourceR>r){const nw=sh*r;return {sx:(sw-nw)/2,sy:0,sw:nw,sh};}
+ const nh=sw/r;return {sx:0,sy:(sh-nh)/2,sw,sh:nh};
+}
+function drawCrop(){
+ if(!sourceImage){statusEl.textContent="আগে একটি ছবি আপলোড করুন।";return;}
+ const ratio=document.getElementById("cropRatio").value;
+ const c=cropToRatio(sourceImage,ratio);
+ const max=1600, scale=Math.min(1,max/Math.max(c.sw,c.sh));
+ canvas.width=Math.round(c.sw*scale);canvas.height=Math.round(c.sh*scale);
+ ctx.clearRect(0,0,canvas.width,canvas.height);
+ ctx.drawImage(sourceImage,c.sx,c.sy,c.sw,c.sh,0,0,canvas.width,canvas.height);
+ finishCanvas("ছবিটি নির্দিষ্ট অনুপাতে কাটা হয়েছে।");
+}
+function finishCanvas(message){
+ canvas.classList.remove("hidden");
+ canvas.toBlob(blob=>{outputBlob=blob;document.getElementById("downloadBtn").classList.remove("hidden");printBtn.classList.remove("hidden");}, "image/jpeg", .94);
+ statusEl.textContent=message;
+}
+document.getElementById("makeCropBtn").addEventListener("click",drawCrop);
+
+document.getElementById("removeBgBtn").addEventListener("click",async()=>{
+ const file=fileInput.files[0];
+ if(!file||!sourceImage){statusEl.textContent="আগে একটি ছবি আপলোড করুন।";return;}
+ const btn=document.getElementById("removeBgBtn");btn.disabled=true;
+ statusEl.textContent="AI দিয়ে ব্যাকগ্রাউন্ড কাটছি—ইন্টারনেট সংযোগ চালু রাখুন। প্রথমবার কিছুটা সময় লাগতে পারে।";
+ try{
+   // Use the package's default export. A named-export call can fail on CDN builds.
+   const mod=await import("https://esm.sh/@imgly/background-removal@1.5.5?bundle");
+   const removeBackground=mod.default || mod.removeBackground;
+   if(typeof removeBackground!=="function") throw new Error("Background-removal module did not expose its function.");
+   const transparentBlob=await removeBackground(file,{
+     model:"small",
+     output:{format:"image/png",quality:1},
+     progress:(key,current,total)=>{
+       if(total>0) statusEl.textContent=`AI মডেল/ছবি প্রসেস হচ্ছে: ${Math.round(current/total*100)}%`;
+     }
+   });
+   const cutUrl=URL.createObjectURL(transparentBlob);
+   const cutImg=new Image();
+   await new Promise((resolve,reject)=>{cutImg.onload=resolve;cutImg.onerror=reject;cutImg.src=cutUrl;});
+   const ratio=35/45, sw=cutImg.naturalWidth, sh=cutImg.naturalHeight;
+   let sx=0,sy=0,cw=sw,ch=sh;
+   if(sw/sh>ratio){cw=sh*ratio;sx=(sw-cw)/2;}else{ch=sw/ratio;sy=(sh-ch)/2;}
+   const outW=700,outH=900;
+   canvas.width=outW;canvas.height=outH;
+   ctx.fillStyle=document.getElementById("bgColor").value;ctx.fillRect(0,0,outW,outH);
+   const pad=35, fit=Math.min((outW-pad*2)/cw,(outH-pad*2)/ch);
+   const dw=cw*fit,dh=ch*fit;
+   ctx.drawImage(cutImg,sx,sy,cw,ch,(outW-dw)/2,(outH-dh)/2,dw,dh);
+   URL.revokeObjectURL(cutUrl);
+   finishCanvas("পাসপোর্ট ছবির ব্যাকগ্রাউন্ড কেটে নির্বাচিত রং দেওয়া হয়েছে।");
+ }catch(err){
+   console.error(err);
+   const reason=(err && err.message)?err.message:"Unknown error";
+   statusEl.textContent="ব্যাকগ্রাউন্ড কাটতে সমস্যা হয়েছে। GitHub Pages-এর আসল ওয়েবসাইটে Chrome দিয়ে চেষ্টা করুন; প্রথমবার AI মডেল নামাতে ইন্টারনেট লাগবে। বিস্তারিত: "+reason;
+ }finally{btn.disabled=false;}
+});
+document.getElementById("downloadBtn").addEventListener("click",()=>{
+ if(!outputBlob)return;
+ const a=document.createElement("a"),url=URL.createObjectURL(outputBlob);
+ a.href=url;a.download=currentKey==="passport"?"passport-photo.jpg":"cropped-document.jpg";a.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1500);
+});
+printBtn.addEventListener("click",()=>{
+ if(!outputBlob){statusEl.textContent="আগে কাটিং বা ব্যাকগ্রাউন্ড পরিবর্তন করুন।";return;}
+ const url=URL.createObjectURL(outputBlob),w=window.open("","_blank");
+ if(!w){URL.revokeObjectURL(url);alert("প্রিন্ট প্রিভিউ খুলতে পপ-আপ অনুমতি দিন।");return;}
+ w.document.write(`<html><head><title>MR MONJUR - Print</title><style>@page{size:A4;margin:12mm}body{margin:0;display:flex;align-items:center;justify-content:center;min-height:95vh}img{max-width:100%;max-height:270mm;object-fit:contain}</style></head><body><img src="${url}" onload="setTimeout(()=>window.print(),300)"></body></html>`);
+ w.document.close();
+});
+document.getElementById("clearBtn").addEventListener("click",()=>{
+ fileInput.value="";preview.removeAttribute("src");resetOutput();fileInfo.textContent="";
+ if(currentUrl){URL.revokeObjectURL(currentUrl);currentUrl=null;}
+});
+</script>
+</body>
+</html>
